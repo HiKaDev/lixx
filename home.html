@@ -30,47 +30,35 @@
         }
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            padding: 10px 15px;
+            position: relative;
         }
-        nav a:hover {
-            background-color: #424242;
-            border-radius: 5px;
+        nav a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #90caf9;
+            transition: width 0.3s;
+            margin-top: 5px;
         }
-        .search-container {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-            margin: 10px 0;
-        }
-        .search-bar {
+        nav a:hover::after {
             width: 100%;
-            max-width: 400px;
-            padding: 10px;
-            border: 1px solid #424242;
-            border-radius: 5px;
-            background-color: #2c2c2c;
+        }
+        .badge {
+            background-color: red;
             color: white;
-        }
-        .logout-container {
-            margin-left: 10px;
-        }
-        .logout-button {
-            padding: 10px 15px;
-            background-color: #d32f2f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .logout-button:hover {
-            background-color: #b71c1c;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
         }
         .content {
             padding: 20px;
@@ -88,6 +76,10 @@
         .card:hover {
             transform: scale(1.05);
         }
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
         .footer {
             background-color: #1e1e1e;
             padding: 10px;
@@ -96,44 +88,49 @@
             bottom: 0;
             width: 100%;
         }
+        .theme-switch {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
     </style>
 </head>
 <body>
 
-<header>Página Inicial - Bem-vindo!</header>
+<header>
+    Página Inicial - Bem-vindo!
+    <input type="checkbox" class="theme-switch" id="themeSwitch"> Modo Claro/Escuro
+</header>
 
 <nav>
     <div class="nav-links">
         <a href="#">Início</a>
         <a href="#">Perfil</a>
         <a href="#">Configurações</a>
-        <a href="ia.html">IA</a>
+        <a href="ia.html">IA <span class="badge">3</span></a>
     </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Pesquisar...">
-    </div>
-
-    <div class="logout-container">
-        <button class="logout-button" id="logoutButton">Sair</button>
-    </div>
+    <button class="logout-button" id="logoutButton">Sair</button>
 </nav>
 
 <div class="content">
     <div class="card" id="onlineUsersCard">
+        <div class="card-icon">👥</div>
         <h2>Usuários Online</h2>
         <p id="onlineUsersCount">Carregando...</p>
     </div>
     <div class="card">
+        <div class="card-icon">📰</div>
         <h2>Últimas Notícias</h2>
         <p>Mantenha-se informado sobre as atualizações recentes.</p>
     </div>
     <div class="card">
+        <div class="card-icon">💬</div>
         <h2>Chat com IA</h2>
         <p>Acesse a IA e tire suas dúvidas em tempo real.</p>
         <a href="ia.html">Iniciar Chat</a>
     </div>
     <div class="card">
+        <div class="card-icon">📊</div>
         <h2>Atividades Recentes</h2>
         <p>Veja as últimas atividades realizadas por você e seus colegas.</p>
     </div>
@@ -167,10 +164,16 @@
     }
 
     fetchOnlineUsers();
+
+    const themeSwitch = document.getElementById('themeSwitch');
+    themeSwitch.addEventListener('change', () => {
+        document.body.classList.toggle('light-theme');
+    });
 </script>
 
 </body>
 </html>
+
 
 
 
