@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary-bg: #1a1a1a;
+            --primary-color: white;
+            --secondary-bg: #333;
+            --notification-color: red;
         }
 
-        /* Estilo do menu */
+        [data-theme="light"] {
+            --primary-bg: #f0f0f0;
+            --primary-color: black;
+            --secondary-bg: #ddd;
+            --notification-color: blue;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Menu superior */
         nav {
-            background-color: #333;
+            background-color: var(--secondary-bg);
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -35,7 +50,7 @@
 
         nav ul li a {
             text-decoration: none;
-            color: white;
+            color: var(--primary-color);
             font-size: 18px;
         }
 
@@ -48,14 +63,18 @@
             position: absolute;
             top: -10px;
             right: -10px;
-            background-color: red;
+            background-color: var(--notification-color);
             color: white;
             border-radius: 50%;
             padding: 5px 10px;
             font-size: 12px;
         }
 
-        /* Container do card */
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -64,7 +83,7 @@
         }
 
         .card {
-            background-color: #333;
+            background-color: var(--secondary-bg);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
@@ -94,6 +113,8 @@
             <span class="material-icons">notifications</span>
             <span class="badge" id="notificationCount">0</span>
         </div>
+
+        <div class="theme-toggle" id="themeToggle">🌙</div>
     </nav>
 
     <!-- Card de usuários online -->
@@ -105,6 +126,20 @@
     </div>
 
     <script>
+        // Alterna entre tema claro e escuro
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        themeToggle.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+
         // Função para obter o número de usuários online
         async function fetchOnlineUsers() {
             try {
@@ -138,7 +173,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </body>
 </html>
-
 
 
 
