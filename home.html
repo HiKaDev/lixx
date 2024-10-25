@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Página Protegida</title>
 </head>
 <body>
-    <h1>Bem-vindo à Página Home!</h1>
-    <p>Você está autenticado.</p>
+    <h1>Bem-vindo à Página Protegida!</h1>
     <button id="logoutButton">Sair</button>
 
     <script>
-        // Verificar se o token existe no localStorage
         const token = localStorage.getItem('token');
+
         if (!token) {
-            alert('Você precisa fazer login!');
+            alert('Você precisa fazer login primeiro!');
             window.location.href = 'index.html';  // Redireciona para a página de login
         }
 
-        // Botão de logout
-        const logoutButton = document.getElementById('logoutButton');
-        logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('token');  // Remove o token
-            window.location.href = 'index.html';  // Redireciona para o login
+        document.getElementById('logoutButton').addEventListener('click', () => {
+            localStorage.removeItem('token');  // Remove o token do localStorage
+            window.location.href = 'index.html';  // Redireciona para a página de login
         });
     </script>
 </body>
 </html>
+
