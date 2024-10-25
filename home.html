@@ -9,8 +9,8 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #121212; /* Fundo preto elegante */
-            color: #ffffff;
+            background-color: #121212;
+            color: white;
         }
         header {
             background-color: #1e1e1e;
@@ -18,42 +18,70 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-            color: #90caf9; /* Azul claro */
+            color: #90caf9;
         }
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             background-color: #333333;
-            padding: 10px;
+            padding: 10px 20px;
         }
         nav a {
             color: white;
-            padding: 14px 20px;
+            padding: 10px 15px;
             text-decoration: none;
             font-weight: 500;
-            margin: 0 10px;
         }
         nav a:hover {
             background-color: #424242;
             border-radius: 5px;
         }
-        .content {
-            padding: 30px;
-            text-align: center;
+        .search-bar {
+            flex-grow: 1;
+            margin-left: 20px;
+            position: relative;
         }
-        .content h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #90caf9;
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #424242;
+            border-radius: 5px;
+            background-color: #2c2c2c;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .footer {
+            background-color: #1e1e1e;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
         .logout-button {
-            padding: 12px 20px;
+            padding: 10px 15px;
             background-color: #d32f2f;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
         .logout-button:hover {
             background-color: #b71c1c;
@@ -62,19 +90,43 @@
 </head>
 <body>
 
-<header>Página Inicial</header>
+<header>Página Inicial - Bem-vindo!</header>
 
 <nav>
-    <a href="#">Início</a>
-    <a href="#">Perfil</a>
-    <a href="#">Configurações</a>
-    <a href="ia.html">IA</a> <!-- Corrigido para redirecionar para a página ia.html -->
-    <a href="#" id="logoutButton">Sair</a>
+    <div>
+        <a href="#">Início</a>
+        <a href="#">Perfil</a>
+        <a href="#">Configurações</a>
+        <a href="ia.html">IA</a>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Pesquisar...">
+    </div>
+    <button class="logout-button" id="logoutButton">Sair</button>
 </nav>
 
 <div class="content">
-    <h1>Bem-vindo à Página Home!</h1>
-    <p>Você está logado com sucesso.</p>
+    <div class="card">
+        <h2>Usuários Online</h2>
+        <p>Veja quem está ativo no momento!</p>
+    </div>
+    <div class="card">
+        <h2>Últimas Notícias</h2>
+        <p>Mantenha-se informado sobre as atualizações recentes.</p>
+    </div>
+    <div class="card">
+        <h2>Chat com IA</h2>
+        <p>Acesse a IA e tire suas dúvidas em tempo real.</p>
+        <a href="ia.html">Iniciar Chat</a>
+    </div>
+    <div class="card">
+        <h2>Atividades Recentes</h2>
+        <p>Veja as últimas atividades realizadas por você e seus colegas.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024 Minha Aplicação. Todos os direitos reservados.</p>
 </div>
 
 <script>
@@ -92,6 +144,7 @@
 
 </body>
 </html>
+
 
 
 
