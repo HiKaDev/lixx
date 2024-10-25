@@ -3,213 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Página Inicial</title>
     <style>
-        :root {
-            --primary-bg: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: white;
-            --hover-color: #424242;
-            --button-bg: #d32f2f;
-            --button-bg-hover: #b71c1c;
-        }
-
-        body.light-theme {
-            --primary-bg: #f0f0f0;
-            --card-bg: #ffffff;
-            --text-color: black;
-            --hover-color: #e0e0e0;
-            --button-bg: #0288d1;
-            --button-bg-hover: #0277bd;
-        }
-
         body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            padding: 0;
         }
 
-        header {
-            background-color: var(--card-bg);
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #90caf9;
-        }
-
+        /* Estilo do menu */
         nav {
+            background-color: #333;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--card-bg);
-            padding: 10px 20px;
-            flex-wrap: wrap;
         }
 
-        .nav-links {
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
             display: flex;
-            gap: 15px;
         }
 
-        nav a {
-            color: var(--text-color);
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
             text-decoration: none;
-            font-weight: 500;
-            position: relative;
+            color: white;
+            font-size: 18px;
         }
 
-        .badge {
+        .notification {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
             background-color: red;
             color: white;
             border-radius: 50%;
-            padding: 5px;
+            padding: 5px 10px;
             font-size: 12px;
-            position: absolute;
-            top: -8px; /* Ajusta a posição vertical */
-            right: -8px; /* Ajusta a posição horizontal */
         }
 
-        .content {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        /* Container do card */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
         }
 
         .card {
-            background-color: var(--card-bg);
+            background-color: #333;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .logout-button {
-            padding: 10px 15px;
-            background-color: var(--button-bg);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .logout-button:hover {
-            background-color: var(--button-bg-hover);
-        }
-
-        .theme-switch-button {
-            background-color: var(--button-bg);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .footer {
-            background-color: var(--card-bg);
-            padding: 10px;
+            border-radius: 10px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
+    <!-- Menu de navegação -->
+    <nav>
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="ia.html">IA</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
 
-<header>
-    Página Inicial - Bem-vindo!
-</header>
+        <div class="notification">
+            <span class="material-icons">notifications</span>
+            <span class="badge" id="notificationCount">0</span>
+        </div>
+    </nav>
 
-<nav>
-    <div class="nav-links">
-        <a href="#">Início</a>
-        <a href="#">Perfil</a>
-        <a href="#">Configurações</a>
-        <a href="ia.html">
-            <span class="card-icon">💬</span>
-            <span class="badge">3</span>
-        </a>
+    <!-- Card de usuários online -->
+    <div class="container">
+        <div class="card">
+            <h2>Usuários Online</h2>
+            <p id="onlineUsers">Carregando...</p>
+        </div>
     </div>
-    <div>
-        <button class="theme-switch-button" id="themeSwitch">🌙 Alternar Tema</button>
-        <button class="logout-button" id="logoutButton">Sair</button>
-    </div>
-</nav>
 
-<div class="content">
-    <div class="card" id="onlineUsersCard">
-        <div class="card-icon">👥</div>
-        <h2>Usuários Online</h2>
-        <p id="onlineUsersCount">Carregando...</p>
-    </div>
-    <div class="card">
-        <div class="card-icon">📰</div>
-        <h2>Últimas Notícias</h2>
-        <p>Mantenha-se informado sobre as atualizações recentes.</p>
-    </div>
-    <div class="card">
-        <div class="card-icon">📊</div>
-        <h2>Atividades Recentes</h2>
-        <p>Veja as últimas atividades realizadas por você e seus colegas.</p>
-    </div>
-</div>
-
-<div class="footer">
-    <p>&copy; 2024 Minha Aplicação. Todos os direitos reservados.</p>
-</div>
-
-<script>
-    const token = localStorage.getItem('token');
-    if (!token) {
-        alert('Você precisa estar logado!');
-        window.location.href = 'index.html';
-    }
-
-    document.getElementById('logoutButton').addEventListener('click', () => {
-        localStorage.removeItem('token');
-        window.location.href = 'index.html';
-    });
-
-    async function fetchOnlineUsers() {
-        try {
-            const response = await fetch('https://1cc9f2a3-529d-40f7-b28d-f1f4c29480c4-00-3lxlh70ct2il8.spock.replit.dev/online-users');
-            const data = await response.json();
-            document.getElementById('onlineUsersCount').textContent = `${data.online} usuário(s) online`;
-        } catch (error) {
-            console.error('Erro ao buscar usuários online:', error);
-            document.getElementById('onlineUsersCount').textContent = 'Erro ao carregar.';
+    <script>
+        // Função para obter o número de usuários online
+        async function fetchOnlineUsers() {
+            try {
+                const response = await fetch('https://seu-backend.replit.app/online-users');
+                const data = await response.json();
+                document.getElementById('onlineUsers').textContent = data.onlineUsers;
+            } catch (error) {
+                console.error('Erro ao obter usuários online:', error);
+                document.getElementById('onlineUsers').textContent = 'Erro';
+            }
         }
-    }
 
-    fetchOnlineUsers();
+        // Função para atualizar o contador de notificações (simulado)
+        function updateNotificationCount() {
+            const count = Math.floor(Math.random() * 10);  // Simula um número aleatório de notificações
+            document.getElementById('notificationCount').textContent = count;
+        }
 
-    const themeSwitch = document.getElementById('themeSwitch');
-    themeSwitch.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        themeSwitch.textContent = document.body.classList.contains('light-theme') ? '🌙 Modo Escuro' : '🌞 Modo Claro';
-    });
-</script>
+        // Atualiza os usuários online a cada 5 segundos
+        setInterval(fetchOnlineUsers, 5000);
 
+        // Atualiza o contador de notificações a cada 10 segundos
+        setInterval(updateNotificationCount, 10000);
+
+        // Chamada inicial para buscar o número de usuários online
+        fetchOnlineUsers();
+        updateNotificationCount();
+    </script>
+
+    <!-- Importa ícones do Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </body>
 </html>
+
 
 
 
