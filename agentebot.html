@@ -20,11 +20,23 @@
     <main>
         <div id="chat-container">
             <div id="messages"></div>
-            <input type="text" id="userInput" placeholder="Digite sua mensagem...">
-            <button onclick="sendMessage()">Enviar</button>
+
+            <!-- Campo para anexar arquivo -->
+            <input type="file" id="fileInput">
+            
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Digite sua mensagem...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+
+            <!-- Ícone de carregamento -->
+            <div id="loading" class="hidden">
+                <img src="loading.gif" alt="Carregando...">
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
 </body>
 </html>
+
 
