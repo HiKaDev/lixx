@@ -1,0 +1,43 @@
+body {
+    background-color: #0d1117;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #161b22;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+#chat-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #21262d;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #238636;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
